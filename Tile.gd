@@ -63,7 +63,8 @@ func _ready():
 
 func activate():
 	set_pressed(true)
-	set_ignore_mouse(true)
+	#set_ignore_mouse(true)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	set('flagged',false)
 	if mine:
 		emit_signal('bomb')
@@ -78,7 +79,8 @@ func _on_Button_pressed():
 
 func _input(event):
 	if is_hovered():
-		if event.type == InputEvent.MOUSE_BUTTON:
+		#if event.type == InputEvent.MOUSE_BUTTON:
+		if event is InputEventMouseButton:
 			if event.button_index == 2 and event.pressed:
 				if !flagged:
 					set('flagged',true)

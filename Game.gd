@@ -40,7 +40,7 @@ func start():
 	
 func make_tiles():
 	# Make tiles
-	assert MapBox.get_child_count() == 0
+	assert(MapBox.get_child_count() == 0)
 	MapBox.set_columns(MapSize.x)
 	for y in range(MapSize.y):
 		for x in range(MapSize.x):
@@ -53,12 +53,13 @@ func make_tiles():
 func adjust_window_size():
 	# Adjust window size
 	var rect = MapBox.get_child(0).get_rect().size
-	var x = rect.width*MapSize.x+48
-	var y = (rect.height*MapSize.y)+get_node('box/info').get_rect().size.height+38
+	var x = rect.x*MapSize.x+48
+	var y = (rect.y*MapSize.y)+get_node('box/info').get_rect().size.y+38
 	var size = Vector2(x,y)
 	OS.set_window_size(size)
 
 func distribute_mines():
+	randomize()
 	# Distribute mines
 	var M = MineCount
 	prints("Mines:",M)
